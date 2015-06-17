@@ -1,0 +1,18 @@
+//
+//  MechanicsViewController.h
+//  DelMonte
+//
+//  Created by Arnel Perez on 6/10/15.
+//  Copyright (c) 2015 Arnel Perez. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MechanicsViewController : UIViewController
+{
+    
+}
+
+- (IBAction)btnStart:(id)sender;
+
+@end
