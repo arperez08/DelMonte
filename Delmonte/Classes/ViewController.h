@@ -11,7 +11,7 @@
 
 @interface ViewController : UIViewController
 {
-    
+    NSMutableArray *_imagesArray;
 }
 
 - (IBAction)btnStart:(id)sender;

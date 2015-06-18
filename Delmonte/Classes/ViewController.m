@@ -9,12 +9,16 @@
 #import "ViewController.h"
 #import "MechanicsViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "UConstants.h"
+#import "SKSplashIcon.h"
 
 @interface ViewController ()
 {
     AVAudioPlayer *audioPlayer;
     SPSoundChannel *_musicChannel;
 }
+@property (strong, nonatomic) SKSplashView *splashView;
+@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
 @end
 
 @implementation ViewController
@@ -22,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //[self bgAnimate];
+    
+    [self showTitle];
     [self playMusic];
 }
 
@@ -39,6 +46,11 @@
     [_musicChannel play];
 }
 
+- (void) showTitle{
+
+
+}
+
 /*
 #pragma mark - Navigation
 
@@ -49,11 +61,25 @@
 }
 */
 
+- (void) splashView:(SKSplashView *)splashView didBeginAnimatingWithDuration:(float)duration
+{
+    NSLog(@"Started animating from delegate");
+    //To start activity animation when splash animation starts
+    [_indicatorView startAnimating];
+}
+
+- (void) splashViewDidEndAnimating:(SKSplashView *)splashView
+{
+    NSLog(@"Stopped animating from delegate");
+    //To stop activity animation when splash animation ends
+    [_indicatorView stopAnimating];
+    
+    
+}
+
 - (IBAction)btnStart:(id)sender {
     MechanicsViewController *mvc = [[MechanicsViewController alloc] initWithNibName:@"MechanicsViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController pushViewController:mvc animated:YES];
-    
-    
 }
 @end

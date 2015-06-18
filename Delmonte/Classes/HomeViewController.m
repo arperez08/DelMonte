@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    stageTimer = 31;
+    stageTimer = 35;
     
     UIColor *tintColor = [UIColor colorWithRed:184/255.0 green:233/255.0 blue:134/255.0 alpha:1.0];
     self.circleProgressView.tintColor = tintColor;
@@ -56,12 +56,19 @@
         self.circleProgressView.hidden = YES;
         timerTextField.hidden = YES;
     }
+    else if (stageTimer > 30)
+    {
+        timerTextField.hidden = YES;
+        [self performSelector:@selector(updateTimeLabel) withObject:nil afterDelay:1.0];
+    }
     else if ((stageTimer < 11) && (stageTimer > 0)){
+        timerTextField.hidden = NO;
         UIColor *tintColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
         self.circleProgressView.tintColor = tintColor;
         [self performSelector:@selector(updateTimeLabel) withObject:nil afterDelay:1.0];
     }
     else{
+        timerTextField.hidden = NO;
         [self performSelector:@selector(updateTimeLabel) withObject:nil afterDelay:1.0];
     }
 }
@@ -74,6 +81,7 @@
     ViewController *mvc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController pushViewController:mvc animated:YES];
+    [mvc release];
 }
 
 

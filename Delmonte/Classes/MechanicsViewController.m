@@ -41,5 +41,6 @@
     HomeViewController *mvc = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController pushViewController:mvc animated:YES];
+    [mvc release];
 }
 @end

@@ -14,12 +14,19 @@
 	int score;
 	int level;
     int stageTimer;
+    int countTimer;
 	SPTextField *scoreTextField;
 	SPTextField *levelTextField;
 	SPTextField *timerTextField;
 	NSMutableArray *balloonTextures;
+    NSMutableArray *coinTextures;
+    NSMutableArray *countTextures;
 	SPSprite *playFieldSprite;
+    SPSprite *coinFieldSprite;
+    SPSprite * minus1FieldSprite;
+    
 	BOOL resetButtonVisible;
+    SPSprite *countFieldSprite;
     
     NSTimer *timer;
     int currMinute;

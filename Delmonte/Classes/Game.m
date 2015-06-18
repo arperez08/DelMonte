@@ -28,17 +28,60 @@
     // initialize game stage with specified width and height
     if (self = [super initWithWidth:width height:height])
     {
+        score = 0;
+        level = 1;
+        stageTimer = 32;
+        countTimer = 4;
+        
         // Create image with contents of background image
         SPImage *backgroundImage = [SPImage imageWithContentsOfFile:@"tutorialbackground.png"];
         // add background image to the main stage
         [self addChild:backgroundImage];
         
-        // set the score to zero
-        score = 0;
-        // set the level to one
-        level = 1;
-        // set timer to 30 secs
-        stageTimer = 32;
+        
+        // Create a mutable array for the image textures
+        countTextures = [NSMutableArray array];
+        // Add each of the balloon textures into the balloon textures array
+        [countTextures addObject:[SPTexture textureWithContentsOfFile:@"go.png"]];
+        [countTextures addObject:[SPTexture textureWithContentsOfFile:@"one.png"]];
+        [countTextures addObject:[SPTexture textureWithContentsOfFile:@"two.png"]];
+        [countTextures addObject:[SPTexture textureWithContentsOfFile:@"three.png"]];
+        [countTextures retain];
+        countFieldSprite = [SPSprite sprite];
+        [self addChild:countFieldSprite];
+        [self timerGo];
+    }
+    return self;
+}
+
+- (void) timerGo{
+    countTimer = countTimer - 1;
+    if (countTimer < 0) {
+        [countFieldSprite removeAllChildren];
+        
+        
+        // Create a mutable array for the image textures
+        coinTextures = [NSMutableArray array];
+        // Add each of the balloon textures into the balloon textures array
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"0coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"1coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"2coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"3coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"4coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"5coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"5coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"6coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"7coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"8coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"9coins.png"]];
+        [coinTextures addObject:[SPTexture textureWithContentsOfFile:@"10coins.png"]];
+        [coinTextures retain];
+        coinFieldSprite = [SPSprite sprite];
+        [self addChild:coinFieldSprite];
+        
+        minus1FieldSprite = [SPSprite sprite];
+        [self addChild:minus1FieldSprite];
+        
         
         // Create the score and level text fields
         scoreTextField = [SPTextField textFieldWithText:[NSString stringWithFormat:@"%d", score]];
@@ -54,8 +97,23 @@
         //scoreTextField.hAlign = SPHAlignRight;
         // set the font size
         scoreTextField.fontSize = 50;
+        scoreTextField.color = 0xffff00;
         // add the score text to the stage
         [self addChild:scoreTextField];
+        [self updateTimeLabel];
+        //        NSString *bmpFontName = [SPTextField registerBitmapFontFromFile:@"desyrel.fnt"];
+        //        NSString *scoreText =[NSString stringWithFormat:@"%d", score];
+        //        SPTextField *bmpFontTF = [SPTextField textFieldWithWidth:300 height:150
+        //                                                            text:scoreText];
+        //        bmpFontTF.fontSize = SP_NATIVE_FONT_SIZE; // use the native bitmap font size, no scaling
+        //        bmpFontTF.fontName = bmpFontName;
+        //        //bmpFontTF.color = kCGColorWhite; // use white if you want to use the texture as it is
+        //        bmpFontTF.hAlign = SPHAlignCenter;
+        //        bmpFontTF.vAlign = SPVAlignCenter;
+        //        bmpFontTF.x = 550;
+        //        bmpFontTF.y =850;
+        //        [self addChild:bmpFontTF];
+        
         
         // do what we just did with score text field to the level
         // just place it on the other corner
@@ -76,16 +134,14 @@
         timerTextField.fontSize = 20;
         //[self addChild:timerTextField];
         
-//        SPSound *music = [SPSound soundWithContentsOfFile:@"music.caf"];
-//        _musicChannel = [[music createChannel]retain];
-//        _musicChannel.loop = YES;
-//        _musicChannel.volume = 0.25;
-//        [_musicChannel play];
-        
+        //        SPSound *music = [SPSound soundWithContentsOfFile:@"music.caf"];
+        //        _musicChannel = [[music createChannel]retain];
+        //        _musicChannel.loop = YES;
+        //        _musicChannel.volume = 0.25;
+        //        [_musicChannel play];
         
         // Create a mutable array for the image textures
         balloonTextures = [NSMutableArray array];
-        
         // Add each of the balloon textures into the balloon textures array
         [balloonTextures addObject:[SPTexture textureWithContentsOfFile:@"bluetutorial.png"]];
         [balloonTextures addObject:[SPTexture textureWithContentsOfFile:@"greentutorial.png"]];
@@ -96,24 +152,47 @@
         [balloonTextures addObject:[SPTexture textureWithContentsOfFile:@"bomb1.png"]];
         [balloonTextures addObject:[SPTexture textureWithContentsOfFile:@"bomb2.png"]];
         [balloonTextures addObject:[SPTexture textureWithContentsOfFile:@"bomb3.png"]];
-        // retain the balloon textures array so that it can be accessed
-        // from elsewhere within this class
         [balloonTextures retain];
-        
-        // create sprite for the balloons to be placed in - I did this so that
-        // objects on the playing field could be removed quickly without affecting
-        // the background
         playFieldSprite = [SPSprite sprite];
-        // add the playing field to the stage
         [self addChild:playFieldSprite];
+        
         // draw the initial balloon onto the playfield
         [self addBalloon];
-
-        
-        [self updateTimeLabel];
-        
     }
-    return self;
+    else{
+        if (countTimer == 0) {
+            [countFieldSprite removeAllChildren];
+            SPImage *countimage = [SPImage imageWithTexture:[countTextures objectAtIndex:countTimer]];
+            countimage.x = 250;
+            countimage.y = 500;
+            [countFieldSprite addChild:countimage];
+            
+            SPSound *music = [SPSound soundWithContentsOfFile:@"beep.caf"];
+            _soundChannel = [music createChannel];
+            _soundChannel.loop = NO;
+            [_soundChannel play];
+            [self performSelector:@selector(timerGo) withObject:nil afterDelay:1.0];
+        }
+        else{
+            [countFieldSprite removeAllChildren];
+            SPImage *countimage = [SPImage imageWithTexture:[countTextures objectAtIndex:countTimer]];
+            countimage.x = 250;
+            countimage.y = -250;
+            [countFieldSprite addChild:countimage];
+            
+            SPSound *music = [SPSound soundWithContentsOfFile:@"beep.caf"];
+            _soundChannel = [music createChannel];
+            _soundChannel.loop = NO;
+            [_soundChannel play];
+            
+            SPTween *tween = [SPTween tweenWithTarget:countimage time:1 transition:SP_TRANSITION_EASE_OUT_IN_BACK];
+            [tween animateProperty:@"x" targetValue:250];
+            [tween animateProperty:@"y" targetValue:1024];
+            [self.juggler addObject:tween];
+            
+            [self performSelector:@selector(timerGo) withObject:nil afterDelay:1.0];
+        }
+    }
 }
 
 
@@ -129,7 +208,47 @@
     }
 }
 
-
+- (void) addCoin
+{
+    int intCoin = 0;
+    if (score < 1) {
+        intCoin = 0;
+    }
+    else if (score == 1) {
+        intCoin = 1;
+    }
+    else if (score == 2){
+        intCoin = 2;
+    }
+    else if (score == 3){
+        intCoin = 3;
+    }
+    else if (score == 4){
+        intCoin = 4;
+    }
+    else if (score == 5){
+        intCoin = 5;
+    }
+    else if (score == 6){
+        intCoin = 6;
+    }
+    else if (score == 7){
+        intCoin = 7;
+    }
+    else if (score == 8){
+        intCoin = 8;
+    }
+    else if (score == 9){
+        intCoin = 9;
+    }
+    else{
+        intCoin = 10;
+    }
+    SPImage *coinimage = [SPImage imageWithTexture:[coinTextures objectAtIndex:intCoin]];
+    coinimage.y = 860;
+    coinimage.x = 555;
+    [coinFieldSprite addChild:coinimage];
+}
 
 // in this method we add a balloon and begin it's upward movement we'll simply
 // take one and place it at a random location under the bottom of the screen
@@ -160,7 +279,15 @@
         // add image to the playing field
         [playFieldSprite addChild:image];
         // create an animation known as a tween with a duration between 2 and 6 seconds
-        SPTween *tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 4) + 2) transition:SP_TRANSITION_LINEAR];
+        
+        SPTween *tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 2) + 2) transition:SP_TRANSITION_LINEAR];
+        
+        //        if (intBalloon >=6){
+        //            tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 3)) transition:SP_TRANSITION_LINEAR];
+        //        }
+        //        else{
+        //            tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 4) + 2) transition:SP_TRANSITION_LINEAR];
+        //        }
         
         // set the x coordinate at the end of the animation to a random location
         [tween animateProperty:@"y" targetValue:arc4random() % (int)(self.height-image.height)];
@@ -195,7 +322,17 @@
         // add image to the playing field
         [playFieldSprite addChild:image];
         // create an animation known as a tween with a duration between 2 and 6 seconds
-        SPTween *tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 4) + 2) transition:SP_TRANSITION_LINEAR];
+        
+        SPTween *tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 3) + 2) transition:SP_TRANSITION_LINEAR];
+        
+        //        if (intBalloon >=6){
+        //            tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 3)) transition:SP_TRANSITION_LINEAR];
+        //        }
+        //        else{
+        //            tween = [SPTween tweenWithTarget:image time:(double)((arc4random() % 4) + 2) transition:SP_TRANSITION_LINEAR];
+        //        }
+        
+        
         // set the x coordinate at the end of the animation to a random location
         [tween animateProperty:@"y" targetValue:arc4random() % (int)(self.height-image.height)];
         // set the y coordinate at the end of the animation to the point where the
@@ -248,37 +385,26 @@
     // sound in Sparrow and for our purposes does just fine.
     //[[SPSound soundWithContentsOfFile:@"beep.caf"] play];
     
-    SPSound *music = [SPSound soundWithContentsOfFile:@"beep.caf"];
+    SPSound *music = [SPSound soundWithContentsOfFile:@"coinSound.caf"];
     _soundChannel = [music createChannel];
     _soundChannel.loop = NO;
     [_soundChannel play];
+    
+    [coinFieldSprite removeAllChildren];
+    [self addCoin];
     
     // remove all animations from the stage juggler that are associated with
     // the touched balloon
     [self.juggler removeTweensWithTarget:currentBalloon];
     
-    // create a new animation within which we will adjust the scale of the
-    // balloon to make it look like it has been deflated.
-    SPTween *tween = [SPTween tweenWithTarget:currentBalloon time:0.35 transition:SP_TRANSITION_LINEAR];
-    // adjust the scaling factor of the balloon's x coordinates
-    [tween animateProperty:@"scaleX" targetValue:0.75];
-    // adjust the scaling factor of the balloon's x coordinates
-    [tween animateProperty:@"scaleY" targetValue:1.25];
-    // add the new animation to the juggler
-    [self.juggler addObject:tween];
+    //SPTween* tween = [SPTween tweenWithTarget:currentBalloon time:(480.0-currentBalloon.y)/480.0 transition:SP_TRANSITION_LINEAR];
+    //[tween animateProperty:@"y" targetValue:self.height+currentBalloon.height];
+    //[self.juggler addObject:tween];
     
-    // create a new animation which will quickly move the balloon downwards
-    // so it will look like it is falling due to a loss of air
-    // scale things so that the animation speed stays consistent wherever
-    // the balloon is on the screen.
-    tween = [SPTween tweenWithTarget:currentBalloon time:(480.0-currentBalloon.y)/480.0 transition:SP_TRANSITION_LINEAR];
-    // set the ending y coordinate for the balloon off the bottom of the screen
-    [tween animateProperty:@"y" targetValue:self.height+currentBalloon.height];
-    // add the falling animation ot the juggler
+    SPTween* tween = [SPTween tweenWithTarget:currentBalloon time:0.3 transition:SP_TRANSITION_LINEAR];
+    [tween animateProperty:@"x" targetValue:760];
+    [tween animateProperty:@"y" targetValue:1024];
     [self.juggler addObject:tween];
-    
-    // add an event listener that will run the balloon popped event as soon as
-    // when the falling animation has completed.
     [tween addEventListener:@selector(balloonPopped:) atObject:self forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
     
 }
@@ -289,42 +415,39 @@
     SPDisplayObject* currentBalloon = (SPDisplayObject*)[event target];
     
     // remove all event listeners related to touch from this balloon
-    [currentBalloon removeEventListener:@selector(onTouchBalloon:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [currentBalloon removeEventListener:@selector(onTouchBalloonNeg:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     score=score-1;
     
     // update the score text
     scoreTextField.text = [NSString stringWithFormat:@"%d", score];
-    
-    // play the balloon popping sound - this is the easiest way to play a
-    // sound in Sparrow and for our purposes does just fine.
-    //[[SPSound soundWithContentsOfFile:@"balloonpop.caf"] play];
-    
-    SPSound *music = [SPSound soundWithContentsOfFile:@"balloonpop.caf"];
+
+    SPSound *music = [SPSound soundWithContentsOfFile:@"buzz.caf"];
     _soundChannel = [music createChannel];
     _soundChannel.loop = NO;
     [_soundChannel play];
     
+    [coinFieldSprite removeAllChildren];
+    [self addCoin];
     
     // remove all animations from the stage juggler that are associated with
     // the touched balloon
     [self.juggler removeTweensWithTarget:currentBalloon];
-    
-    // create a new animation within which we will adjust the scale of the
-    // balloon to make it look like it has been deflated.
-    SPTween *tween = [SPTween tweenWithTarget:currentBalloon time:0.35 transition:SP_TRANSITION_LINEAR];
-    // adjust the scaling factor of the balloon's x coordinates
-    [tween animateProperty:@"scaleX" targetValue:0.75];
-    // adjust the scaling factor of the balloon's x coordinates
-    [tween animateProperty:@"scaleY" targetValue:1.25];
-    // add the new animation to the juggler
+
+    SPImage *countimage = [SPImage imageWithContentsOfFile:@"minus1.png"];
+    countimage.x = currentBalloon.x;
+    countimage.y = currentBalloon.y;
+    [minus1FieldSprite addChild:countimage];
+    SPTween *tween = [SPTween tweenWithTarget:countimage time:0.5 transition:SP_TRANSITION_EASE_OUT_IN_BACK];
+    [tween animateProperty:@"x" targetValue:currentBalloon.x];
+    [tween animateProperty:@"y" targetValue:-100];
     [self.juggler addObject:tween];
     
     // create a new animation which will quickly move the balloon downwards
     // so it will look like it is falling due to a loss of air
     // scale things so that the animation speed stays consistent wherever
     // the balloon is on the screen.
-    tween = [SPTween tweenWithTarget:currentBalloon time:(480.0-currentBalloon.y)/480.0 transition:SP_TRANSITION_LINEAR];
+    tween = [SPTween tweenWithTarget:currentBalloon time:(480.0-currentBalloon.y)/480.0 transition:SP_TRANSITION_EASE_IN_ELASTIC];
     // set the ending y coordinate for the balloon off the bottom of the screen
     [tween animateProperty:@"y" targetValue:self.height+currentBalloon.height];
     // add the falling animation ot the juggler
@@ -355,6 +478,7 @@
 {
     [self.juggler removeAllObjects];
     [playFieldSprite removeAllChildren];
+    [coinFieldSprite removeAllChildren];
     
     SPImage *backgroundImage = [SPImage imageWithContentsOfFile:@"scoreScreen.png"];
     [playFieldSprite addChild:backgroundImage];
@@ -366,65 +490,9 @@
     scoreTextField.vAlign = SPVAlignTop;
     scoreTextField.hAlign = SPHAlignCenter;
     scoreTextField.fontSize = 100;
-    [scoreTextField setColor:@"#ffffff"];
+    [scoreTextField setColor:0xffff00];
     [scoreTextField setWidth:300.0];
     [self addChild:scoreTextField];
-    
-    
-    //    [playFieldSprite removeAllChildren];
-    //    level = 1;
-    //    score = 0;
-    //    levelTextField.text = [NSString stringWithFormat:@"Level: %d", level];
-    //    scoreTextField.text = [NSString stringWithFormat:@"Score: %d", score];
-    
-    //    ScoreViewController *mvc = [[ScoreViewController alloc] initWithNibName:@"ScoreViewController" bundle:[NSBundle mainBundle]];
-    //    mvc.lblScore.text = score;
-    //    NSLog(@"score: %d",score);
-    //
-    //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    //    self.window.rootViewController = mvc;
-    //    [self.window makeKeyAndVisible];
-    
-    
-    //	// we'll use reset button visible as when more than one object leaves the
-    //	// screen at the same time this can cause the code in this method to execute
-    //	// multiple times
-//    if(resetButtonVisible == NO)
-//    {
-//        resetButtonVisible = YES;
-//        SPImage *backgroundImage = [SPImage imageWithContentsOfFile:@"scoreScreen.png"];
-//        [playFieldSprite addChild:backgroundImage];
-//        
-//        scoreTextField = [SPTextField textFieldWithText:[NSString stringWithFormat:@"%d PTS", score]];
-//        scoreTextField.fontName = @"Marker Felt";
-//        scoreTextField.x = 200;
-//        scoreTextField.y = 700;
-//        scoreTextField.vAlign = SPVAlignTop;
-//        scoreTextField.hAlign = SPHAlignCenter;
-//        scoreTextField.fontSize = 100;
-//        [scoreTextField setColor:@"#ffffff"];
-//        [scoreTextField setWidth:300.0];
-//        [self addChild:scoreTextField];
-//
-//        // create a reset button using the reset button graphic
-//        SPButton *resetButton = [SPButton buttonWithUpState:[SPTexture textureWithContentsOfFile:@"reset_button.png"]];
-//        // place the button in the middle of the screen
-//        resetButton.x = self.width/2-resetButton.width/2;
-//        resetButton.y = self.height/2-resetButton.height/2;
-//        // set the font attributes
-//        resetButton.fontName = @"Marker Felt";
-//        resetButton.fontSize = 20;
-//        // add the button text
-//        resetButton.text = @"Reset Game";
-//        // add a listener so that when the button is pressed the
-//        // onResetButtonTriggered method is executed
-//        [resetButton addEventListener:@selector(onResetButtonTriggered:) atObject:self
-//                              forType:SP_EVENT_TYPE_TRIGGERED];
-//        
-//        // add the button to the playing field
-//        [playFieldSprite addChild:resetButton];
-//        
-//    }
 }
 
 // this method is executed whenever a falling balloon flies through the bottom
@@ -443,8 +511,10 @@
     
     // remove the balloon from the playing field
     [playFieldSprite removeChild:currentBalloon];
+    //[minus1FieldSprite removeAllChildren];
     
     // if there are no balloons visible execute this code
+    
     if(playFieldSprite.numChildren == 0)
     {
         // increase the level
@@ -464,18 +534,18 @@
 // use it here in order to do some cleanup and restart the game
 -(void)onResetButtonTriggered:(SPEvent*)event
 {
-    // remove any balloons remaining on the play field to clean up memory	
+    // remove any balloons remaining on the play field to clean up memory
     //	[playFieldSprite removeAllChildren];
-    //		
+    //
     //	resetButtonVisible = NO;
-    //	
+    //
     //	// reset level and score parameters and update text so the game can start
-    //	// from the beginning		
+    //	// from the beginning
     //	level = 1;
     //	score = 0;
     //	levelTextField.text = [NSString stringWithFormat:@"Level: %d", level];
     //	scoreTextField.text = [NSString stringWithFormat:@"Score: %d", score];
-    //		
+    //
     //	// restart the game
     //	[self addBalloon];
     

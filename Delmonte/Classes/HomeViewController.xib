@@ -38,7 +38,7 @@
                                 <rect key="frame" x="56" y="45" width="288" height="280"/>
                             </variation>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZI1-8V-ipj">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZI1-8V-ipj">
                             <rect key="frame" x="79" y="868" width="101" height="83"/>
                             <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="48"/>
                             <color key="textColor" red="1" green="0.9389507400909235" blue="0.24481879573494947" alpha="1" colorSpace="calibratedRGB"/>

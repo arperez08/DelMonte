@@ -13,7 +13,7 @@
 
 @implementation BalloonGameTutorialAppDelegate
 
-@synthesize window,sparrowView;
+@synthesize window,sparrowView,navController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -21,16 +21,16 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.navController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil]];
+    navController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil]];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [self.navController setNavigationBarHidden:YES];
-    self.navController.interactivePopGestureRecognizer.enabled = YES;
-    [self.navController setNavigationBarHidden:YES];
-    self.window.rootViewController = self.navController;
+    [navController setNavigationBarHidden:YES];
+    navController.interactivePopGestureRecognizer.enabled = YES;
+    [navController setNavigationBarHidden:YES];
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
-    
     return YES;
+    [self.navController release];
 }
 
 //- (void)applicationDidFinishLaunching:(UIApplication *)application {
