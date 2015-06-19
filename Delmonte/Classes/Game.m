@@ -38,7 +38,6 @@
         // add background image to the main stage
         [self addChild:backgroundImage];
         
-        
         // Create a mutable array for the image textures
         countTextures = [NSMutableArray array];
         // Add each of the balloon textures into the balloon textures array
@@ -58,7 +57,6 @@
     countTimer = countTimer - 1;
     if (countTimer < 0) {
         [countFieldSprite removeAllChildren];
-        
         
         // Create a mutable array for the image textures
         coinTextures = [NSMutableArray array];
@@ -81,7 +79,6 @@
         
         minus1FieldSprite = [SPSprite sprite];
         [self addChild:minus1FieldSprite];
-        
         
         // Create the score and level text fields
         scoreTextField = [SPTextField textFieldWithText:[NSString stringWithFormat:@"%d", score]];
@@ -156,8 +153,12 @@
         playFieldSprite = [SPSprite sprite];
         [self addChild:playFieldSprite];
         
+        explodeFieldSprite = [SPSprite sprite];
+        [self addChild:explodeFieldSprite];
+        
         // draw the initial balloon onto the playfield
-        [self addBalloon];
+        [self addItems];
+        
     }
     else{
         if (countTimer == 0) {
@@ -253,7 +254,7 @@
 // in this method we add a balloon and begin it's upward movement we'll simply
 // take one and place it at a random location under the bottom of the screen
 // and send it upwards to a random location at the top of the screen
--(void)addBalloon
+-(void)addItems
 {
     // create image using a random balloon image
     int intBalloon = 0;
@@ -438,36 +439,50 @@
     countimage.x = currentBalloon.x;
     countimage.y = currentBalloon.y;
     [minus1FieldSprite addChild:countimage];
-    SPTween *tween = [SPTween tweenWithTarget:countimage time:0.5 transition:SP_TRANSITION_EASE_OUT_IN_BACK];
+    SPTween *tween = [SPTween tweenWithTarget:countimage time:0.7 transition:SP_TRANSITION_EASE_OUT_IN_BACK];
     [tween animateProperty:@"x" targetValue:currentBalloon.x];
     [tween animateProperty:@"y" targetValue:-100];
     [self.juggler addObject:tween];
+    
+    SPImage *explodeimage = [SPImage imageWithContentsOfFile:@"explosion.png"];
+    explodeimage.x = currentBalloon.x-50;
+    explodeimage.y = currentBalloon.y-50;
+    [explodeFieldSprite addChild:explodeimage];
+    SPTween *explodetween = [SPTween tweenWithTarget:explodeimage time:0.5 transition:SP_TRANSITION_EASE_IN_OUT_BOUNCE];
+    [explodetween animateProperty:@"x" targetValue:currentBalloon.x-50];
+    [explodetween animateProperty:@"y" targetValue:currentBalloon.y-50];
+    [self.juggler addObject:explodetween];
     
     // create a new animation which will quickly move the balloon downwards
     // so it will look like it is falling due to a loss of air
     // scale things so that the animation speed stays consistent wherever
     // the balloon is on the screen.
-    tween = [SPTween tweenWithTarget:currentBalloon time:(480.0-currentBalloon.y)/480.0 transition:SP_TRANSITION_EASE_IN_ELASTIC];
+    tween = [SPTween tweenWithTarget:currentBalloon time:0.5 transition:SP_TRANSITION_EASE_IN_ELASTIC];
     // set the ending y coordinate for the balloon off the bottom of the screen
-    [tween animateProperty:@"y" targetValue:self.height+currentBalloon.height];
+    //[tween animateProperty:@"y" targetValue:self.height+currentBalloon.height];
     // add the falling animation ot the juggler
     [self.juggler addObject:tween];
     
     // add an event listener that will run the balloon popped event as soon as
     // when the falling animation has completed.
     [tween addEventListener:@selector(balloonPopped:) atObject:self forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
+    [explodetween addEventListener:@selector(explodePopped:) atObject:self forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
     
+}
+
+-(void)explodePopped:(SPEvent*)event {
+    SPTween *animation = (SPTween*)[event target];
+    [animation removeEventListener:@selector(explodePopped:) atObject:self forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
+    SPDisplayObject *currentBalloon = (SPDisplayObject*)[animation target];
+    [explodeFieldSprite removeChild:currentBalloon];
 }
 
 // this method is used to draw more balloons on the screne based on the player's
 // level
 -(void)drawBalloons
 {
-    // loop until all balloons are drawn as determined by the current level
-    for(int i = 0; i < level; i++)
-    {
-        // add balloon into the game
-        [self addBalloon];
+    for(int i = 0; i < level; i++){
+        [self addItems];
     }
 }
 
@@ -493,6 +508,14 @@
     [scoreTextField setColor:0xffff00];
     [scoreTextField setWidth:300.0];
     [self addChild:scoreTextField];
+    
+    if (score >=30) {
+        SPSound *music = [SPSound soundWithContentsOfFile:@"victory.caf"];
+        _soundChannel = [music createChannel];
+        _soundChannel.loop = NO;
+        [_soundChannel play];
+    }
+    
 }
 
 // this method is executed whenever a falling balloon flies through the bottom
@@ -511,6 +534,7 @@
     
     // remove the balloon from the playing field
     [playFieldSprite removeChild:currentBalloon];
+    //[explodeFieldSprite removeAllChildren];
     //[minus1FieldSprite removeAllChildren];
     
     // if there are no balloons visible execute this code
@@ -518,12 +542,18 @@
     if(playFieldSprite.numChildren == 0)
     {
         // increase the level
-        level++;
+        if (level >= 7)
+            level = 7;
+        else
+            level++;
+        
         // update the level text
         //levelTextField.text = [NSString stringWithFormat:@"Level: %d", level];
         
         // empty the playing field of ballons which are now off the screen
         [playFieldSprite removeAllChildren];
+        [explodeFieldSprite removeAllChildren];
+        [minus1FieldSprite removeAllChildren];
         
         // redraw the balloons
         [self drawBalloons];

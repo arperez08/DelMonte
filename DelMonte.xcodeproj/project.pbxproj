@@ -10,6 +10,7 @@
 		142033ED1B2C853D009CE85F /* beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = 142033EC1B2C853D009CE85F /* beep.caf */; };
 		1422D24B1B32E59E00508061 /* buzz.caf in Resources */ = {isa = PBXBuildFile; fileRef = 1422D24A1B32E59E00508061 /* buzz.caf */; };
 		1422D24D1B32E9A000508061 /* minus1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1422D24C1B32E9A000508061 /* minus1.png */; };
+		1429A7011B330C0300041504 /* victory.caf in Resources */ = {isa = PBXBuildFile; fileRef = 1429A7001B330C0300041504 /* victory.caf */; };
 		143305E91B2C4E5C0047B28F /* mechanics.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 143305E71B2C4E5C0047B28F /* mechanics.JPG */; };
 		143305F21B2C50CF0047B28F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143305F01B2C50CF0047B28F /* HomeViewController.m */; };
 		143305F31B2C50CF0047B28F /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143305F11B2C50CF0047B28F /* HomeViewController.xib */; };
@@ -17,6 +18,7 @@
 		143305FB1B2C53F40047B28F /* MechanicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143305F61B2C53F40047B28F /* MechanicsViewController.xib */; };
 		143305FC1B2C53F40047B28F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143305F81B2C53F40047B28F /* ViewController.m */; };
 		143305FD1B2C53F40047B28F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143305F91B2C53F40047B28F /* ViewController.xib */; };
+		14331F3C1B3301B200928677 /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 14331F3B1B3301B200928677 /* explosion.png */; };
 		1437D8DE1B2C480C00F2C019 /* DelMonte-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1437D8D31B2C480C00F2C019 /* DelMonte-Info.plist */; };
 		1437D8E21B2C480C00F2C019 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1437D8D81B2C480C00F2C019 /* main.m */; };
 		1437D8EB1B2C481B00F2C019 /* BalloonGameTutorialAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1437D8E81B2C481B00F2C019 /* BalloonGameTutorialAppDelegate.m */; };
@@ -89,6 +91,7 @@
 		14702DBA1B2EA6800030432B /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14702DB81B2EA6800030432B /* ScoreViewController.m */; };
 		14702DBB1B2EA6800030432B /* ScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14702DB91B2EA6800030432B /* ScoreViewController.xib */; };
 		14702DBD1B2EB22F0030432B /* scoreScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 14702DBC1B2EB22F0030432B /* scoreScreen.png */; };
+		14A4D6F31B32F6D100E8D248 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4D6F21B32F6D100E8D248 /* Images.xcassets */; };
 		14A751E41B31329600B4F004 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A751E31B31329600B4F004 /* coin.png */; };
 		14A751E61B31374200B4F004 /* coinSound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 14A751E51B31374200B4F004 /* coinSound.caf */; };
 		14A751E81B31378900B4F004 /* balloonpop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 14A751E71B31378900B4F004 /* balloonpop.caf */; };
@@ -129,6 +132,7 @@
 		142033EC1B2C853D009CE85F /* beep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = beep.caf; path = Delmonte/Sounds/beep.caf; sourceTree = "<group>"; };
 		1422D24A1B32E59E00508061 /* buzz.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = buzz.caf; path = Delmonte/Sounds/buzz.caf; sourceTree = "<group>"; };
 		1422D24C1B32E9A000508061 /* minus1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus1.png; path = Delmonte/Images/minus1.png; sourceTree = "<group>"; };
+		1429A7001B330C0300041504 /* victory.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = victory.caf; path = Delmonte/Sounds/victory.caf; sourceTree = "<group>"; };
 		143305E71B2C4E5C0047B28F /* mechanics.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mechanics.JPG; path = Delmonte/Images/mechanics.JPG; sourceTree = "<group>"; };
 		143305EF1B2C50CF0047B28F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Delmonte/Classes/HomeViewController.h; sourceTree = SOURCE_ROOT; };
 		143305F01B2C50CF0047B28F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Delmonte/Classes/HomeViewController.m; sourceTree = SOURCE_ROOT; };
@@ -139,6 +143,7 @@
 		143305F71B2C53F40047B28F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Delmonte/Classes/ViewController.h; sourceTree = SOURCE_ROOT; };
 		143305F81B2C53F40047B28F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Delmonte/Classes/ViewController.m; sourceTree = SOURCE_ROOT; };
 		143305F91B2C53F40047B28F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = Delmonte/Classes/ViewController.xib; sourceTree = SOURCE_ROOT; };
+		14331F3B1B3301B200928677 /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion.png; path = Delmonte/Images/explosion.png; sourceTree = "<group>"; };
 		1437D8D31B2C480C00F2C019 /* DelMonte-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DelMonte-Info.plist"; path = "Delmonte/DelMonte-Info.plist"; sourceTree = "<group>"; };
 		1437D8D81B2C480C00F2C019 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Delmonte/main.m; sourceTree = "<group>"; };
 		1437D8E71B2C481B00F2C019 /* BalloonGameTutorialAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BalloonGameTutorialAppDelegate.h; path = Delmonte/Classes/BalloonGameTutorialAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -267,6 +272,7 @@
 		14702DB81B2EA6800030432B /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreViewController.m; path = Delmonte/Classes/ScoreViewController.m; sourceTree = SOURCE_ROOT; };
 		14702DB91B2EA6800030432B /* ScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScoreViewController.xib; path = Delmonte/Classes/ScoreViewController.xib; sourceTree = SOURCE_ROOT; };
 		14702DBC1B2EB22F0030432B /* scoreScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scoreScreen.png; path = Delmonte/Images/scoreScreen.png; sourceTree = "<group>"; };
+		14A4D6F21B32F6D100E8D248 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DelMonte/Images.xcassets; sourceTree = "<group>"; };
 		14A751E31B31329600B4F004 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Delmonte/Images/coin.png; sourceTree = "<group>"; };
 		14A751E51B31374200B4F004 /* coinSound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = coinSound.caf; path = Delmonte/Sounds/coinSound.caf; sourceTree = "<group>"; };
 		14A751E71B31378900B4F004 /* balloonpop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = balloonpop.caf; path = Delmonte/Sounds/balloonpop.caf; sourceTree = "<group>"; };
@@ -329,7 +335,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				14D475AA1B3297CF0086253E /* UConstants.h */,
 				1437D8E71B2C481B00F2C019 /* BalloonGameTutorialAppDelegate.h */,
 				1437D8E81B2C481B00F2C019 /* BalloonGameTutorialAppDelegate.m */,
 				1437D8E91B2C481B00F2C019 /* Game.h */,
@@ -344,6 +349,7 @@
 				14702DB71B2EA6800030432B /* ScoreViewController.h */,
 				14702DB81B2EA6800030432B /* ScoreViewController.m */,
 				14702DB91B2EA6800030432B /* ScoreViewController.xib */,
+				14D475AA1B3297CF0086253E /* UConstants.h */,
 				143305F71B2C53F40047B28F /* ViewController.h */,
 				143305F81B2C53F40047B28F /* ViewController.m */,
 				143305F91B2C53F40047B28F /* ViewController.xib */,
@@ -469,6 +475,7 @@
 		1437D97B1B2C49B900F2C019 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				14331F3B1B3301B200928677 /* explosion.png */,
 				1422D24C1B32E9A000508061 /* minus1.png */,
 				14D475C81B32B8460086253E /* go.png */,
 				14D475C91B32B8460086253E /* one.png */,
@@ -507,6 +514,7 @@
 		1437DA321B2C4B6300F2C019 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				1429A7001B330C0300041504 /* victory.caf */,
 				1422D24A1B32E59E00508061 /* buzz.caf */,
 				14A751E71B31378900B4F004 /* balloonpop.caf */,
 				14A751E51B31374200B4F004 /* coinSound.caf */,
@@ -568,6 +576,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				14A4D6F21B32F6D100E8D248 /* Images.xcassets */,
 				1437D8D11B2C47ED00F2C019 /* Delmonte */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -667,6 +676,7 @@
 				1437D9901B2C49C700F2C019 /* greentutorial.png in Resources */,
 				1437D9961B2C49C700F2C019 /* screenoverlay.png in Resources */,
 				1437D9931B2C49C700F2C019 /* redtutorial.png in Resources */,
+				14A4D6F31B32F6D100E8D248 /* Images.xcassets in Resources */,
 				143305FB1B2C53F40047B28F /* MechanicsViewController.xib in Resources */,
 				14A751EF1B313A4000B4F004 /* 1coins.png in Resources */,
 				14D475B01B329D230086253E /* home.png in Resources */,
@@ -676,6 +686,7 @@
 				1422D24B1B32E59E00508061 /* buzz.caf in Resources */,
 				14D475CF1B32B8460086253E /* two.png in Resources */,
 				14A751F11B313A4000B4F004 /* 3coins.png in Resources */,
+				1429A7011B330C0300041504 /* victory.caf in Resources */,
 				14702DBD1B2EB22F0030432B /* scoreScreen.png in Resources */,
 				14A751F31B313A4000B4F004 /* 5coins.png in Resources */,
 				14A751FD1B3147A500B4F004 /* 8coins.png in Resources */,
@@ -711,6 +722,7 @@
 				1437D9941B2C49C700F2C019 /* reset_button.png in Resources */,
 				14D475AE1B329B4E0086253E /* title.png in Resources */,
 				14D475CC1B32B8460086253E /* go.png in Resources */,
+				14331F3C1B3301B200928677 /* explosion.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +798,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jose Camilo Miguel (TV65HAJ77Q)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -796,7 +810,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Delmonte/DelMonte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PRODUCT_NAME = DelMonte;
-				PROVISIONING_PROFILE = "2e591561-123b-48f6-be82-4d301ac3538f";
+				PROVISIONING_PROFILE = "808016ed-aed6-4002-aac4-4925e6123219";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;
@@ -807,6 +821,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jose Camilo Miguel (TV65HAJ77Q)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -815,7 +831,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Delmonte/DelMonte-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PRODUCT_NAME = DelMonte;
-				PROVISIONING_PROFILE = "2e591561-123b-48f6-be82-4d301ac3538f";
+				PROVISIONING_PROFILE = "808016ed-aed6-4002-aac4-4925e6123219";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;

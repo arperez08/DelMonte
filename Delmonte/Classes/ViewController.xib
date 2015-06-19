@@ -26,9 +26,6 @@
                         <action selector="btnStart:" destination="-1" eventType="touchUpInside" id="uNb-P1-7Cr"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="5kE-c8-5Bo">
-                    <rect key="frame" x="125" y="198" width="518" height="275"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
@@ -37,6 +34,5 @@
     </objects>
     <resources>
         <image name="home.png" width="1536" height="2048"/>
-        <image name="title.png" width="1280" height="728"/>
     </resources>
 </document>

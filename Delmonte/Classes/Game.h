@@ -24,6 +24,7 @@
 	SPSprite *playFieldSprite;
     SPSprite *coinFieldSprite;
     SPSprite * minus1FieldSprite;
+    SPSprite * explodeFieldSprite;
     
 	BOOL resetButtonVisible;
     SPSprite *countFieldSprite;
