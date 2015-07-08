@@ -18,7 +18,7 @@
 	SPTextField *scoreTextField;
 	SPTextField *levelTextField;
 	SPTextField *timerTextField;
-	NSMutableArray *balloonTextures;
+	NSMutableArray *itemsTextures;
     NSMutableArray *coinTextures;
     NSMutableArray *countTextures;
 	SPSprite *playFieldSprite;
@@ -36,11 +36,11 @@
     UIWindow *window;
     SPView *sparrowView;
 }
--(void)addBalloon;
--(void)onTouchBalloon:(SPTouchEvent*)event;
+-(void)addItems;
+-(void)onTouchItems:(SPTouchEvent*)event;
 -(void)movementThroughTopOfScreen:(SPEvent*)event;
--(void)drawBalloons;
--(void)balloonPopped:(SPEvent*)event;
+-(void)drawItems;
+-(void)itemPopped:(SPEvent*)event;
 -(void)onResetButtonTriggered:(SPEvent*)event;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

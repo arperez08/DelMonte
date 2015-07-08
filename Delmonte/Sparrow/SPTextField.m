@@ -117,7 +117,7 @@ static NSMutableDictionary *bitmapFonts = nil;
     float height = mHitArea.height;    
     float fontSize = mFontSize == SP_NATIVE_FONT_SIZE ? SP_DEFAULT_FONT_SIZE : mFontSize;
     
-    UILineBreakMode lbm = UILineBreakModeTailTruncation;
+    UILineBreakMode lbm = NSLineBreakByTruncatingTail;
     CGSize textSize = [mText sizeWithFont:[UIFont fontWithName:mFontName size:fontSize] 
                         constrainedToSize:CGSizeMake(width, height) lineBreakMode:lbm];
     
@@ -146,8 +146,8 @@ static NSMutableDictionary *bitmapFonts = nil;
             CGContextStrokeRect(context, CGRectMake(0.5f, 0.5f, width-1, height-1));
         }
         
-        CGContextSetGrayFillColor(context, 1.0f, 1.0f);        
-        
+        CGContextSetGrayFillColor(context, 1.0f, 1.0f);
+
         [mText drawInRect:CGRectMake(0, yOffset, width, height)
                  withFont:[UIFont fontWithName:mFontName size:fontSize] 
             lineBreakMode:lbm alignment:mHAlign];

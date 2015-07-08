@@ -20,17 +20,18 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-    navController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil]];
-    
+
+    ViewController * vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    navController = [[UINavigationController alloc] initWithRootViewController:vc];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [navController setNavigationBarHidden:YES];
     navController.interactivePopGestureRecognizer.enabled = YES;
     [navController setNavigationBarHidden:YES];
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
+    [vc release];
     return YES;
-    [self.navController release];
+
 }
 
 //- (void)applicationDidFinishLaunching:(UIApplication *)application {

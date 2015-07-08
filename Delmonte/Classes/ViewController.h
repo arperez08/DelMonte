@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Sparrow.h" 
+#import "MTAnimatedLabel.h"
 
 @interface ViewController : UIViewController
 {
     NSMutableArray *_imagesArray;
 }
 
+@property (strong, nonatomic) IBOutlet MTAnimatedLabel *animatedLabel;
 - (IBAction)btnStart:(id)sender;
 
 @end

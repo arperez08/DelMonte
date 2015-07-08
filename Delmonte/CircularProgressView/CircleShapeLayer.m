@@ -19,6 +19,7 @@
 @implementation CircleShapeLayer
 
 @synthesize percent = _percent;
+@synthesize frame;
 
 - (instancetype)init {
     if ((self = [super init]))

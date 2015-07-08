@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTAnimatedLabel.h"
 
 @interface MechanicsViewController : UIViewController
 {
-    
+    NSMutableArray *_imagesArray;
 }
 
 - (IBAction)btnStart:(id)sender;
-
+@property (strong, nonatomic) IBOutlet MTAnimatedLabel *animatedLabel;
 @end

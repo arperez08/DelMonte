@@ -15,7 +15,7 @@
 @property (nonatomic) NSTimeInterval elapsedTime;
 @property (nonatomic) NSTimeInterval timeLimit;
 @property (assign, nonatomic, readonly) double percent;
-@property (nonatomic) UIColor *progressColor;
+@property (retain, nonatomic) UIColor *progressColor;
 
 @end
 

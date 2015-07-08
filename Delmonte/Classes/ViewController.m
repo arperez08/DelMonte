@@ -17,22 +17,28 @@
 #define IMAGE_ALPHA            ((float)(arc4random()%5))/10
 #define IMAGE_WIDTH            arc4random()%60 + 10
 #define PLUS_HEIGHT            Main_Screen_Height/25
+#define kMaxTranslation 190.0f
 
 @interface ViewController ()
 {
     AVAudioPlayer *audioPlayer;
     SPSoundChannel *_musicChannel;
+    CGFloat sliderInitialX;
 }
 @property (strong, nonatomic) SKSplashView *splashView;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
 @end
 
 @implementation ViewController
+@synthesize animatedLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //[self bgAnimate];
+    
+    [animatedLabel startAnimating];
+    self.animatedLabel.alpha = 1.0f;
     
     _imagesArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < 20; ++ i) {
@@ -66,6 +72,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:IMAGENAMED(@"title.png")];
     imageView.frame = CGRectMake(125, 198, 518, 275);
     [self.view addSubview:imageView];
+    [imageView release];
 }
 
 static int i = 0;
@@ -130,5 +137,6 @@ static int i = 0;
     MechanicsViewController *mvc = [[MechanicsViewController alloc] initWithNibName:@"MechanicsViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController pushViewController:mvc animated:NO];
+    [mvc release];
 }
 @end

@@ -62,6 +62,7 @@
     //poolInfo->lastElement = self;
     
     //if (0) [super dealloc]; // just to shut down a compiler warning ...
+    [super dealloc];
 }
 
 - (void)purge
@@ -75,7 +76,7 @@
     SPPoolObject *lastElement;    
     
     int count=0;
-    while (lastElement = poolInfo->lastElement)
+    while ((lastElement = poolInfo->lastElement))
     {
         ++count;        
         poolInfo->lastElement = lastElement->mPoolPredecessor;

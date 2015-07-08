@@ -18,6 +18,7 @@
 @end
 
 @implementation SKSplashIcon
+@synthesize animationDuration;
 
 #pragma mark - Initialization
 

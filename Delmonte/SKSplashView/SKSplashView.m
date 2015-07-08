@@ -102,6 +102,7 @@
         imageView.frame = self.bounds;
         [self addSubview:imageView];
         [self addSubview:icon];
+        [imageView release];
     }
     return self;
 }

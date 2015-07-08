@@ -18,7 +18,7 @@
 
 @implementation HomeViewController
 @synthesize sparrowView;
-@synthesize window,resetBtn,timerTextField;
+@synthesize resetBtn,timerTextField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,9 +39,8 @@
     Game *game = [[Game alloc] initWithWidth:768 height:1024];
     sparrowView.stage = game;
     [sparrowView start];
-    [window makeKeyAndVisible];
     [game release];
-    [SPAudioEngine start];
+    //[SPAudioEngine start];
     SP_RELEASE_POOL(pool);
 }
 
@@ -77,14 +76,12 @@
 - (IBAction)btnReset:(id)sender {
     [SPAudioEngine stop];
     [sparrowView stop];
-    
+    [sparrowView release];
     ViewController *mvc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController pushViewController:mvc animated:YES];
     [mvc release];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -41,7 +41,6 @@ typedef enum {
  */
 
 @interface SPAudioEngine : NSObject
-
 /// -------------
 /// @name Methods
 /// -------------

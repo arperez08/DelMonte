@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MechanicsViewController">
             <connections>
+                <outlet property="animatedLabel" destination="Gv3-Tz-6ZY" id="uze-cf-iok"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,11 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mechanics.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="QXO-IO-OOb">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="QXO-IO-OOb">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                 </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="left" fixedFrame="YES" text="start game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gv3-Tz-6ZY" customClass="MTAnimatedLabel">
+                    <rect key="frame" x="225" y="790" width="342" height="83"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="69"/>
+                    <color key="textColor" red="1" green="0.93895074010000001" blue="0.24481879570000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-m5-zb0">
-                    <rect key="frame" x="198" y="879" width="383" height="30"/>
+                    <rect key="frame" x="225" y="790" width="342" height="83"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -33,6 +41,6 @@
         </view>
     </objects>
     <resources>
-        <image name="mechanics.JPG" width="1536" height="2048"/>
+        <image name="bg.png" width="1536" height="2048"/>
     </resources>
 </document>

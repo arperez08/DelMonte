@@ -43,8 +43,8 @@
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fullPath])
     {
-        [self release];
         [NSException raise:SP_EXC_FILE_NOT_FOUND format:@"file %@ not found", fullPath];
+        [self release];
     }        
     
     NSString *error = nil;
@@ -64,7 +64,7 @@
                                   kAudioFileReadPermission, 0, &fileID);
         if (result != noErr)
         {
-            error = [NSString stringWithFormat:@"could not read audio file (%x)", result];
+            error = [NSString stringWithFormat:@"could not read audio file (%x)", (int)result];
             break;
         }
         
@@ -73,7 +73,7 @@
         result = AudioFileGetProperty(fileID, kAudioFilePropertyDataFormat, &propertySize, &fileFormat);
         if (result != noErr)
         {
-            error = [NSString stringWithFormat:@"could not read file format info (%x)", result];
+            error = [NSString stringWithFormat:@"could not read file format info (%x)", (int)result];
             break;
         }
         
@@ -82,7 +82,7 @@
                                       &propertySize, &soundDuration);
         if (result != noErr)
         {
-            error = [NSString stringWithFormat:@"could not read sound duration (%x)", result];
+            error = [NSString stringWithFormat:@"could not read sound duration (%x)", (int)result];
             break;
         }  
         
@@ -116,7 +116,7 @@
                                       &propertySize, &fileSize);
         if (result != noErr)
         {
-            error = [NSString stringWithFormat:@"could not read sound file size (%x)", result];
+            error = [NSString stringWithFormat:@"could not read sound file size (%x)", (int)result];
             break;
         }          
         
@@ -137,7 +137,7 @@
         }
         else
         { 
-            error = [NSString stringWithFormat:@"could not read sound data (%x)", result];
+            error = [NSString stringWithFormat:@"could not read sound data (%x)", (int)result];
             break;
         }
     }
@@ -147,8 +147,7 @@
     
     if (!error)
     {    
-        self = [[SPALSound alloc] initWithData:soundBuffer size:soundSize channels:soundChannels
-                                     frequency:soundFrequency duration:soundDuration];            
+        self = [[SPALSound alloc] initWithData:soundBuffer size:soundSize channels:soundChannels frequency:soundFrequency duration:soundDuration];
     }
     else
     {
